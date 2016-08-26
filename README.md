@@ -11,7 +11,7 @@ php -S localhost:8000
 ```
 
 ## Kullanım
-```
+```php
 $currency = new \Mews\Tcmb\Currency(new Guzzle\Http\Client('http://www.tcmb.gov.tr/kurlar/today.xml'));
 
 // Tümünü listeme:
