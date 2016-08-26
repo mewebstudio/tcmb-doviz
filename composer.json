@@ -1,0 +1,22 @@
+{
+    "name": "mews/tcmb-doviz",
+    "description": "TCMB Güncel Döviz Kurları",
+    "authors": [
+        {
+            "name": "MeWebStudio - Muharrem ERİN",
+            "email": "me@mewebstudio.com"
+        }
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=5.5",
+        "guzzle/http": "^3.9",
+        "symfony/dom-crawler": "^3.1",
+        "symfony/css-selector": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mews\\Tcmb\\": "src/"
+        }
+    }
+}
