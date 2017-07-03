@@ -1,21 +1,23 @@
 <?php
 
-namespace Mews\Tcmb;
+namespace Mews\Tcmb\Exceptions;
 
+use Exception;
 
 /**
- * Class CurrencyItemException
+ * Class CurrencyClientException
  * @package Mews\Tcmb
  */
-class CurrencyItemException extends \Exception
+class CurrencyClientException extends Exception
 {
     /**
-     * CurrencyItemException constructor.
+     * CurrencyClientException constructor.
+     *
      * @param string $message
      * @param int $code
      * @param \Exception|null $previous
      */
-    public function __construct($message, $code = 1001, \Exception $previous = null)
+    public function __construct($message, $code = 1004, \Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

@@ -1,38 +1,28 @@
 <?php
 
 namespace Mews\Tcmb;
-use Guzzle\Http\ClientInterface;
+
+use GuzzleHttp\Client;
+use Mews\Tcmb\Exceptions\CurrencyClientException;
+use Mews\Tcmb\Exceptions\CurrencyItemException;
 use Symfony\Component\DomCrawler\Crawler;
 
-
-/**
- * Class Currency
- * @package Mews\Tcmb
- * @author Muharrem ERİN <me@mewebstudio.com>
- * @licence MIT
- */
 class Currency
 {
     /**
-     * @var ClientInterface
+     * @var Client
      */
     protected $client;
 
     /**
-     * @var \Guzzle\Http\EntityBodyInterface|string
+     * @var \Psr\Http\Message\ResponseInterface
      */
-    protected $body;
+    protected $response;
 
     /**
-     * @var \Symfony\Component\DomCrawler\Crawler
+     * @var Crawler
      */
     protected $crawler;
-
-    /**
-     * TCMB webservice URL
-     * @var string
-     */
-    protected $url;
 
     /**
      * @var string
@@ -46,22 +36,33 @@ class Currency
 
     /**
      * Currency constructor.
-     * @param ClientInterface $client
+     *
+     * @param $url
+     * @throws CurrencyClientException
      */
-    public function __construct(ClientInterface $client)
+    public function __construct($url)
     {
-        $this->client = $client;
-        $this->body = $this->client->get()->send()->getBody(true);
+        try {
+            $this->client = new Client();
+            $this->response = $this->client->get($url, [
+                'headers' => [
+                    'Accept' => 'application/xml'
+                ]
+            ]);
 
-        $this->parse();
+            $this->parse($this->response->getBody()->getContents());
+        } catch (\Exception $exception) {
+            throw new CurrencyClientException('No information available from webservice!');
+        }
     }
 
     /**
+     * @param $body
      * @return $this
      */
-    protected function parse()
+    protected function parse($body)
     {
-        $this->crawler = new Crawler($this->body);
+        $this->crawler = new Crawler($body);
 
         $this->setDate();
 
