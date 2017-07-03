@@ -18,5 +18,6 @@
         "psr-4": {
             "Mews\\Tcmb\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
