@@ -10,9 +10,9 @@
     "license": "MIT",
     "require": {
         "php": ">=5.5",
-        "guzzle/http": "^3.9",
-        "symfony/dom-crawler": "^3.1",
-        "symfony/css-selector": "^3.1"
+        "guzzlehttp/guzzle": "^6.3",
+        "symfony/dom-crawler": "^3.3",
+        "symfony/css-selector": "^3.3"
     },
     "autoload": {
         "psr-4": {
