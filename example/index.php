@@ -2,7 +2,12 @@
 
 require '../vendor/autoload.php';
 
-$currency = new \Mews\Tcmb\Currency(new Guzzle\Http\Client('http://www.tcmb.gov.tr/kurlar/today.xml'));
+try {
+    $currency = new \Mews\Tcmb\Currency('http://www.tcmb.gov.tr/kurlar/today.xml');
+} catch (\Mews\Tcmb\Exceptions\CurrencyClientException $e) {
+    var_dump($e->getCode(), $e->getMessage());
+    exit();
+}
 
 echo '<h3>Tablo olarak tüm kurlar:</h3>';
 include 'view/table.php';

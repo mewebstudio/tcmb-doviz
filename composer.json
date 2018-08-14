@@ -11,8 +11,8 @@
     "require": {
         "php": ">=5.5",
         "guzzlehttp/guzzle": "^6.3",
-        "symfony/dom-crawler": "^3.3",
-        "symfony/css-selector": "^3.3"
+        "symfony/dom-crawler": "^4.1",
+        "symfony/css-selector": "^4.1"
     },
     "autoload": {
         "psr-4": {
